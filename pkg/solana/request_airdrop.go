@@ -8,7 +8,10 @@ import (
 
 func (s *Solana) RequestAirdrop(ctx context.Context, address string, amount uint64) (string, error) {
 	lamports := amount * solanago.LAMPORTS_PER_SOL
-	publickKey := solanago.PublicKeyFromBytes([]byte(address))
+	publickKey, err := solanago.PublicKeyFromBase58(address)
+	if err != nil {
+		return "", err
+	}
 	signature, err := s.client.RequestAirdrop(ctx, publickKey, lamports, "")
 	if err != nil {
 		return "", err
