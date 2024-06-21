@@ -11,11 +11,16 @@ import (
 func run() error {
 	s := solana.NewSolana()
 
-	var rootCmd = &cobra.Command{}
+	var rootCmd = &cobra.Command{
+		Use:   "solana-example",
+		Short: "Solana example",
+	}
 	rootCmd.AddCommand(
 		internal.NewGenKeyPairCommand(s).Command,
 		internal.NewGetPublicKeyCommand(s).Command,
 		internal.NewRequestAirdropCommand(s).Command,
+		internal.NewGetBalanceCommand(s).Command,
+		internal.NewSendTransactionCommand(s).Command,
 	)
 
 	return rootCmd.Execute()
