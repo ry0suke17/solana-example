@@ -1,8 +1,6 @@
 package internal
 
 import (
-	"fmt"
-
 	"github.com/ry0suke17/solana-example/pkg/solana"
 	"github.com/spf13/cobra"
 )
@@ -18,7 +16,7 @@ func (c *GetPublicKeyCommand) run() error {
 	if err != nil {
 		return err
 	}
-	fmt.Printf("public key: %s\n", publicKey)
+	c.Printf("public key: %s\n", publicKey)
 	return nil
 }
 
