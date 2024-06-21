@@ -32,7 +32,7 @@ func NewRequestAirdropCommand(s *solana.Solana) *requestAirdropCommand {
 	c := &requestAirdropCommand{Command: command, s: s}
 	c.Flags().StringVar(&c.address, "address", "", "send to address")
 	c.MarkFlagRequired("address")
-	c.Flags().Uint64Var(&c.amount, "amount", 0, "amount. If send 0.01 SOL, value is `0,01`. Not lamports.")
+	c.Flags().Uint64Var(&c.amount, "amount of lamports", 0, "amount. If send 1 SOL, value is `1000000000`.")
 	c.MarkFlagRequired("amount")
 	c.RunE = func(cmd *cobra.Command, args []string) error {
 		return c.run()

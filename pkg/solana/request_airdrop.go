@@ -7,12 +7,11 @@ import (
 )
 
 func (s *Solana) RequestAirdrop(ctx context.Context, address string, amount uint64) (string, error) {
-	lamports := amount * solanago.LAMPORTS_PER_SOL
 	publickKey, err := solanago.PublicKeyFromBase58(address)
 	if err != nil {
 		return "", err
 	}
-	signature, err := s.client.RequestAirdrop(ctx, publickKey, lamports, "")
+	signature, err := s.client.RequestAirdrop(ctx, publickKey, amount, "")
 	if err != nil {
 		return "", err
 	}
